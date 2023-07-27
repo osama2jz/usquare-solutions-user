@@ -8,7 +8,7 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import contactus from "../../assets/contactus.png";
+import contactus from "../../assets/contactUs.png";
 import { useStyles } from "./styles";
 import { useMediaQuery } from "@mantine/hooks";
 import ContactForm from "../../components/ContactForm";
