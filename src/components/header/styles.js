@@ -23,6 +23,15 @@ export const useStyles = createStyles((theme, { opened }) => ({
     padding: "10px",
     color: "white",
     borderRadius: "50%",
+    cursor: "pointer",
+    border:'1px solid white',
+    "&:hover": {
+      color: theme.colors.blue,
+      backgroundColor: "white",
+      borderColor: theme.colors.blue,
+      borderWidth: "1px",
+      borderStyle: "solid",
+    },
   },
   navigationBar: {
     [`@media (max-width: 1100px)`]: {

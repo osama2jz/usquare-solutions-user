@@ -23,7 +23,9 @@ const Tetstimonials = () => {
         What our Clients are Saying
       </Title>
       <Flex gap={"50px"}>
-        {isMobile && <img src={img} width={"40%"} />}
+        {isMobile && (
+          <img src={img} height={"300px"} style={{ margin: "auto" }} />
+        )}
         <Box w={!isMobile ? "100%" : "60%"}>
           <Carousel
             slideSize="50%"

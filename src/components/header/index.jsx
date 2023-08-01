@@ -1,7 +1,7 @@
 import { Box, Burger, Flex, Menu, Text, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useStyles } from "./styles";
 import {
@@ -13,6 +13,7 @@ import {
 const Header = ({ opened, toggle }) => {
   const isMobile = useMediaQuery("(max-width: 1100px)");
   const theme = useMantineTheme();
+  const navigate = useNavigate();
   const { classes } = useStyles({ opened });
 
   return (
@@ -51,7 +52,11 @@ const Header = ({ opened, toggle }) => {
           boxShadow: "0px 5px 5px rgb(0,0,0,0.1)",
         }}
       >
-        <Flex align={"center"} className={classes.logo}>
+        <Flex
+          align={"center"}
+          className={classes.logo}
+          onClick={() => navigate("/")}
+        >
           <img src={logo} width={170} />
         </Flex>
         <Flex gap={"lg"} align={"center"} className={classes.navigationBar}>

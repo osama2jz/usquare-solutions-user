@@ -22,4 +22,20 @@ export const useStyles = createStyles((theme) => ({
       padding: "20px",
     },
   },
+  job: {
+    display: "flex",
+    alignItems: "flex-end",
+    borderBottom: "1px solid rgb(0,0,0,0.1)",
+    padding: "10px",
+    width: "100%",
+    justifyContent: "space-between",
+    ":last-child": {
+      border: "none",
+    },
+    [`@media (max-width: 800px)`]: {
+      flexDirection: "column",
+      width: "90%",
+      alignItems: "flex-start",
+    },
+  },
 }));

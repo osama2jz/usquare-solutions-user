@@ -11,6 +11,8 @@ import AboutUs from "./pages/aboutus";
 import Career from "./pages/career";
 import Portfolio from "./pages/portfolio";
 import Products from "./pages/products";
+import Blogs from "./pages/blogs";
+import ViewJob from "./pages/career/ViewJob";
 
 function App() {
   const [opened, { toggle }] = useDisclosure(false);
@@ -24,8 +26,10 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/careers" element={<Career />} />
+        <Route path="/view-job" element={<ViewJob />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/blogs" element={<Blogs />} />
       </Routes>
       <Footer />
     </Box>

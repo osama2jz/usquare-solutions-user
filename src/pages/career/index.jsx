@@ -1,12 +1,26 @@
-import { Box, Stack, Text, Title, useMantineTheme } from "@mantine/core";
-import React from "react";
+import {
+  Box,
+  Stack,
+  Title,
+  useMantineTheme
+} from "@mantine/core";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import career from "../../assets/career.jpg";
-import { useStyles } from "./styles";
+import { backendUrl } from "../../constants";
 import About from "../home/About";
+import JobCard from "./JobCard";
+import { useStyles } from "./styles";
 
 const Career = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    axios
+      .get(backendUrl + "/career/get_all")
+      .then((res) => setJobs(res.data.data));
+  }, []);
   return (
     <Box>
       <Box
@@ -23,9 +37,13 @@ const Career = () => {
         <Title order={3} fw={300}>
           Start's your work with Usquare Solutions
         </Title>
-        <Text>JOBS HERE HEHRUE</Text>
+        <Stack>
+          {jobs.map((obj, ind) => {
+            return <JobCard obj={obj} key={ind} />;
+          })}
+        </Stack>
       </Stack>
-      <About/>
+      <About />
     </Box>
   );
 };

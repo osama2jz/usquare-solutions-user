@@ -1,78 +1,19 @@
-import {
-  Box,
-  Flex,
-  Image,
-  Stack,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { Box, Flex, Title } from "@mantine/core";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import aboutUs from "../../assets/aboutUs.png";
-import { useStyles } from "./styles";
-import osam from "../../assets/osama.jpg";
-import { useState } from "react";
 import ProjectCard from "../../components/ProjectCard";
+import { backendUrl } from "../../constants";
+import { useStyles } from "./styles";
 
 const Portfolio = () => {
-  const theme = useMantineTheme();
-  const isMobile = useMediaQuery("(min-width: 1290px)");
-  const isMobile2 = useMediaQuery("(max-width: 900px)");
   const { classes } = useStyles();
-  const [portflio, setPortflio] = useState([
-    {
-      name: "Muhammad Usama",
-      description:
-        "This is a sample description about this project. This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-
-    {
-      name: "Muhammad Usama",
-      description: "This is a sample description about this project",
-      img: osam,
-      link: "https://www.facebook.com",
-    },
-  ]);
-
+  const [portflio, setPortflio] = useState([]);
+  useEffect(() => {
+    axios
+      .get(backendUrl + "/portfolio/get_all")
+      .then((res) => setPortflio(res.data.data));
+  }, []);
   return (
     <Box>
       <Box

@@ -71,7 +71,9 @@ const WhyChooseUs = () => {
           </Stack>
         </Flex>
       </Stack>
-      {isMobile && <img src={img} width={"50%"} />}
+      {isMobile && (
+        <img src={img} height={"300px"} style={{ margin: "auto" }} />
+      )}
     </Flex>
   );
 };

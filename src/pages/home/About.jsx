@@ -14,7 +14,9 @@ const About = () => {
 
   return (
     <Flex className={classes.about} gap={"100px"}>
-      {isMobile && <img src={img} width={"40%"} />}
+      {isMobile && (
+        <img src={img} height={"300px"} style={{ margin: "auto" }} />
+      )}
       <Stack align="flex-end" className={classes.aboutSub} spacing={"xl"}>
         <Title align="center" color={theme.colors.blue} fw={400}>
           ABOUT US

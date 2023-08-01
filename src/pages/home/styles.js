@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
     backgroundColor: "#4e00a4",
     color: "white",
     padding: "50px 200px",
-    [`@media (max-width: 800px)`]: {
+    [`@media (max-width: 1100px)`]: {
       padding: "20px",
       height: "600px",
     },
@@ -30,6 +30,7 @@ export const useStyles = createStyles((theme) => ({
     borderRadius: "10px",
     gap: "10px",
     marginLeft: "10px",
+    cursor: "pointer",
   },
   testimonialCard: {
     display: "flex",
@@ -49,20 +50,20 @@ export const useStyles = createStyles((theme) => ({
   about: {
     padding: "100px 200px",
     backgroundColor: "#f8f9fa",
-    [`@media (max-width: 800px)`]: {
+    [`@media (max-width: 1200px)`]: {
       padding: "20px",
     },
   },
   WhyChooseUs: {
     padding: "100px 200px",
     backgroundColor: "#f8f9fa",
-    [`@media (max-width: 800px)`]: {
+    [`@media (max-width: 1200px)`]: {
       padding: "20px",
     },
   },
   test: {
     padding: "100px 200px",
-    [`@media (max-width: 800px)`]: {
+    [`@media (max-width: 1200px)`]: {
       padding: "20px",
     },
   },

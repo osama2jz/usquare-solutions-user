@@ -1,12 +1,20 @@
 import { Box, Title, useMantineTheme } from "@mantine/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "./styles";
 import ServiceCard from "./ServiceCard";
 import { Carousel } from "@mantine/carousel";
+import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const Projects = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
+  const [portfolio, setPortfolio] = useState([]);
+  useEffect(() => {
+    axios
+      .get(backendUrl + "/portfolio/get_recent_six")
+      .then((res) => setPortfolio(res.data.data));
+  }, []);
   return (
     <Box className={classes.services}>
       <Title align="center" color={theme.colors.blue} fw={400}>
@@ -29,15 +37,18 @@ const Projects = () => {
           { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
         ]}
       >
-        <Carousel.Slide>
-          <ServiceCard />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <ServiceCard />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <ServiceCard />
-        </Carousel.Slide>
+        {portfolio?.map((obj, ind) => {
+          return (
+            <Carousel.Slide key={ind}>
+              <ServiceCard
+                title={obj?.title}
+                description={obj?.description}
+                picture={obj?.picture}
+                link={obj?.project_link}
+              />
+            </Carousel.Slide>
+          );
+        })}
       </Carousel>
     </Box>
   );

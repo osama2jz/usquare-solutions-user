@@ -7,28 +7,31 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import img from "../../assets/home.png";
 import About from "./About";
+import LetsTalk from "./LetsTalk";
 import Projects from "./Projects";
 import Services from "./Services";
 import Tetstimonials from "./Testimonials";
 import ToolsTech from "./Tools&Tech";
 import WhyChooseUs from "./WhyChooseUs";
 import { useStyles } from "./styles";
-import { useMediaQuery } from "@mantine/hooks";
-import LetsTalk from "./LetsTalk";
 
 const Home = () => {
   const { classes } = useStyles();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery("(min-width: 800px)");
+
   return (
     <Box>
       <SimpleGrid
         className={classes.top}
         spacing={isMobile ? "100px" : "10px"}
         breakpoints={[
-          { maxWidth: "sm", cols: 1 },
+          { maxWidth: "xs", cols: 1 },
           { minWidth: "md", cols: 2 },
         ]}
       >
@@ -42,11 +45,12 @@ const Home = () => {
           <Button
             variant="white"
             style={{ alignSelf: "flex-start", color: "black" }}
+            onClick={() => navigate("/contact-us")}
           >
             Get Started
           </Button>
         </Stack>
-        <Image src={img} height={"100%"} fit="contain" />
+        <Image src={img} height={"300px"} fit="contain" m="auto"/>
       </SimpleGrid>
       <Services />
       <About />

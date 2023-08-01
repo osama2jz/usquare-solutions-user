@@ -19,7 +19,9 @@ import t3 from "../../assets/t3.svg";
 import t4 from "../../assets/t4.svg";
 import t5 from "../../assets/t5.svg";
 import osam from "../../assets/osama.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const AboutUs = () => {
   const theme = useMantineTheme();
@@ -34,6 +36,11 @@ const AboutUs = () => {
     { name: "Muhammad Usama", role: "Web Developer", img: osam },
     { name: "Muhammad Usama", role: "Web Developer", img: osam },
   ]);
+  useEffect(() => {
+    axios
+      .get(backendUrl + "/team-member/get_all")
+      .then((res) => setPeople(res.data.data));
+  }, []);
   return (
     <Box>
       <Box
@@ -232,13 +239,21 @@ const AboutUs = () => {
         <Title order={3} fw={300}>
           Meet with our Team Members
         </Title>
-        <Flex wrap={"wrap"} gap="sm" m="auto" justify={"center"} rowGap={"30px"}>
+        <Flex
+          wrap={"wrap"}
+          gap="sm"
+          m="auto"
+          justify={"center"}
+          rowGap={"30px"}
+        >
           {people.map((person, ind) => {
             return (
               <Stack key={ind} w={"270px"} spacing={"0px"}>
-                <Image src={person.img} width={"250px"} radius={"xl"}/>
-                <Text fw={"bold"} fz={"lg"}>{person.name}</Text>
-                <Text color={theme.colors.blue}>{person.role}</Text>
+                <Image src={person.picture} width={"250px"} radius={"xl"} />
+                <Text fw={"bold"} fz={"lg"}>
+                  {person.name}
+                </Text>
+                <Text color={theme.colors.blue}>{person.job_title}</Text>
               </Stack>
             );
           })}
