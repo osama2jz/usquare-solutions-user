@@ -1,18 +1,15 @@
 import {
   Box,
-  Flex,
   SimpleGrid,
   Stack,
   Title,
-  useMantineTheme,
+  useMantineTheme
 } from "@mantine/core";
-import { useEffect, useState } from "react";
-import blogs from "../../assets/blogs.png";
-import blog from "../../assets/blog.webp";
-import BlogCard from "./blogCard";
-import { useStyles } from "./styles";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { backendUrl } from "../../constants";
+import BlogCard from "./BlogCard";
+import { useStyles } from "./styles";
 
 const Blogs = () => {
   const { classes } = useStyles();
