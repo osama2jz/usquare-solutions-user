@@ -95,7 +95,8 @@ const Footer = () => {
       </SimpleGrid>
       <Divider color="rgb(255, 255, 255,0.1)" w={"100%"} />
       <Text align="center">
-        {new Date().getFullYear()} USQUARE Solutions. All Rights reserved
+        Copyright © DECIMAL SOLUTION All Rights Reserved{" "}
+        {new Date().getFullYear()}
       </Text>
     </Box>
   );
