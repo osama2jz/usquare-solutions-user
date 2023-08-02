@@ -1,8 +1,10 @@
 import { Image, Stack, Text, useMantineTheme } from "@mantine/core";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({ obj, ind }) => {
   const theme = useMantineTheme();
+  const navigate = useNavigate();
   return (
     <Stack
       key={ind}
@@ -14,7 +16,7 @@ const BlogCard = ({ obj, ind }) => {
         borderRadius: "10px",
         boxShadow: "0px 5px 5px rgb(0,0,0,0.2)",
       }}
-      onClick={() => window.open(obj?.link, "_blank")}
+      onClick={() => navigate("/view-blog", { state: { blogData: obj } })}
     >
       <Image src={obj?.picture} height={"280px"} />
       <Text fz="xs" align="left">

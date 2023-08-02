@@ -9,8 +9,6 @@ const ViewJob = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const { job } = useLocation().state;
-  console.log(job);
-  //   const job = { title: "ReactJs Developer", jobType: "Full Time" };
   return (
     <Box>
       <Box

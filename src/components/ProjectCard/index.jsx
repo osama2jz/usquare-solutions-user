@@ -16,6 +16,7 @@ const ProjectCard = ({ obj, ind }) => {
         borderColor: "rgb(0,0,0,0.1)",
         borderRadius: "10px",
         position: "relative",
+        width: "210px",
         boxShadow: "0px 5px 5px rgb(0,0,0,0.2)",
       }}
       onMouseLeave={() => setShow(false)}
@@ -39,6 +40,7 @@ const ProjectCard = ({ obj, ind }) => {
           alignItems: "center",
           backgroundColor: "rgb(24, 100, 171, 0.8)",
           color: "white",
+          justifyContent: "center",
           opacity: show ? 1 : 0,
           transition: "0.2s ease-in all",
         }}

@@ -22,4 +22,11 @@ export const useStyles = createStyles((theme) => ({
       padding: "20px",
     },
   },
+  blogData: {
+    padding: "100px",
+    overflow: "scroll",
+    [`@media (max-width: 900px)`]: {
+      padding: "20px",
+    },
+  },
 }));

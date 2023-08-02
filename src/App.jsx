@@ -1,7 +1,7 @@
 import { useDisclosure } from "@mantine/hooks";
 import "./App.css";
 import Header from "./components/header";
-import { Box } from "@mantine/core";
+import { Box, useMantineTheme } from "@mantine/core";
 import Footer from "./components/footer";
 import Home from "./pages/home";
 import { Route, Routes } from "react-router-dom";
@@ -13,13 +13,33 @@ import Portfolio from "./pages/portfolio";
 import Products from "./pages/products";
 import Blogs from "./pages/blogs";
 import ViewJob from "./pages/career/ViewJob";
+import ViewBlog from "./pages/blogs/ViewBlog";
+import chat from "./assets/chat.svg";
 
 function App() {
+  const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure(false);
 
   return (
     <Box>
       <Header opened={opened} toggle={toggle} />
+      <Box
+        style={{
+          position: "fixed",
+          bottom: 20,
+          right: 20,
+          zIndex: 999,
+          padding: "10px",
+          borderRadius: "50%",
+          width: "25px",
+          textAlign: "center",
+          cursor:'pointer',
+          backgroundColor: "#1864ab",
+        }}
+        onClick={() => window.open("http://m.me/UsquareSolutions", "_blank")}
+      >
+        <img src={chat} width={"20px"} />
+      </Box>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services/:type" element={<Services />} />
@@ -30,6 +50,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/products" element={<Products />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/view-blog" element={<ViewBlog />} />
       </Routes>
       <Footer />
     </Box>

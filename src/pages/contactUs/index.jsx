@@ -28,7 +28,7 @@ const ContactUs = () => {
         <Title order={3}>Let us know how we can help you</Title>
       </Box>
       <SimpleGrid
-        style={{ padding: !isMobile ? "10px" : "50px 220px" }}
+        style={{ padding: !isMobile ? "20px" : "50px 220px" }}
         spacing={"xl"}
         breakpoints={[
           { minWidth: "xs", cols: 1 },
@@ -63,7 +63,7 @@ const ContactUs = () => {
         wrap={isMobile ? "nowrap" : "wrap"}
         gap={!isMobile ? "20px" : "100px"}
       >
-        <Image src={contactus2} w />
+        <Image src={contactus2} width={"300px"} m="auto" />
         <ContactForm />
       </Flex>
     </Box>

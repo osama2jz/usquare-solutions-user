@@ -37,7 +37,7 @@ export const useStyles = createStyles((theme, { opened }) => ({
     [`@media (max-width: 1100px)`]: {
       flexDirection: "column",
       position: "absolute",
-      top: "80px",
+      top: "60px",
       padding: "50px 20px",
       color: "black !important",
       borderRadius: "10px",
@@ -46,6 +46,7 @@ export const useStyles = createStyles((theme, { opened }) => ({
       backgroundColor: "white",
       display: opened ? "flex" : "none",
       zIndex: 11,
+      boxShadow:'0px 10px 10px rgb(0,0,0,0.2)'
     },
   },
 }));

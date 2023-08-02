@@ -18,8 +18,8 @@ export const useStyles = createStyles((theme) => ({
   contactUsForm: {
     padding: "100px 200px",
     backgroundColor: "#f8f9fa",
-    [`@media (max-width: 800px)`]: {
-      padding: "20px",
+    [`@media (max-width: 1200px)`]: {
+      padding: "50px",
     },
   },
 }));

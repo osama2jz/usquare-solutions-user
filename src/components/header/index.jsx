@@ -1,6 +1,6 @@
 import { Box, Burger, Flex, Menu, Text, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useStyles } from "./styles";
@@ -9,13 +9,20 @@ import {
   BrandInstagram,
   DeviceMobile,
 } from "tabler-icons-react";
+import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const Header = ({ opened, toggle }) => {
   const isMobile = useMediaQuery("(max-width: 1100px)");
   const theme = useMantineTheme();
   const navigate = useNavigate();
   const { classes } = useStyles({ opened });
-
+  const [cat, setCat] = useState([]);
+  useEffect(() => {
+    axios
+      .get(backendUrl + "/category/get_all")
+      .then((res) => setCat(res.data.data));
+  }, []);
   return (
     <>
       <Box
@@ -60,7 +67,11 @@ const Header = ({ opened, toggle }) => {
           <img src={logo} width={170} />
         </Flex>
         <Flex gap={"lg"} align={"center"} className={classes.navigationBar}>
-          <Link className={classes.link} to="/">
+          <Link
+            className={classes.link}
+            to="/"
+            onClick={() => isMobile && toggle()}
+          >
             Home
           </Link>
           <Menu>
@@ -68,12 +79,20 @@ const Header = ({ opened, toggle }) => {
               <Link className={classes.link}>Services</Link>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item>
-                <Link className={classes.link} to="/services/ar-vr-games">
-                  AR/VR Games
-                </Link>
-              </Menu.Item>
-              <Menu.Item>
+              {cat.map((item, ind) => {
+                return (
+                  <Menu.Item
+                    key={ind}
+                    onClick={() => {
+                      navigate(`/services/${item.name}`);
+                      isMobile && toggle();
+                    }}
+                  >
+                    <Link className={classes.link}>{item.name}</Link>
+                  </Menu.Item>
+                );
+              })}
+              {/* <Menu.Item>
                 <Link
                   className={classes.link}
                   to="/services/web-app-development"
@@ -109,25 +128,49 @@ const Header = ({ opened, toggle }) => {
                 <Link className={classes.link} to="/services/graphic-designing">
                   Graphic Designing
                 </Link>
-              </Menu.Item>
+              </Menu.Item> */}
             </Menu.Dropdown>
           </Menu>
-          <Link className={classes.link} to="/portfolio">
+          <Link
+            className={classes.link}
+            to="/portfolio"
+            onClick={() => isMobile && toggle()}
+          >
             Portfolio
           </Link>
-          <Link className={classes.link} to="/products">
+          <Link
+            className={classes.link}
+            to="/products"
+            onClick={() => isMobile && toggle()}
+          >
             Our Products
           </Link>
-          <Link className={classes.link} to="/careers">
+          <Link
+            className={classes.link}
+            to="/careers"
+            onClick={() => isMobile && toggle()}
+          >
             Careers
           </Link>
-          <Link className={classes.link} to="/about-us">
+          <Link
+            className={classes.link}
+            to="/about-us"
+            onClick={() => isMobile && toggle()}
+          >
             About Us
           </Link>
-          <Link className={classes.link} to="/blogs">
+          <Link
+            className={classes.link}
+            to="/blogs"
+            onClick={() => isMobile && toggle()}
+          >
             Blogs
           </Link>
-          <Link className={classes.link} to="/contact-us">
+          <Link
+            className={classes.link}
+            to="/contact-us"
+            onClick={() => isMobile && toggle()}
+          >
             Contact Us
           </Link>
         </Flex>
