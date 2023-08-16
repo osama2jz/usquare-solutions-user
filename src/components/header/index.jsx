@@ -134,7 +134,7 @@ const Header = ({ opened, toggle }) => {
                   Mobile App Development
                 </Link>
               </Menu.Item>
-              <Menu.Item
+              {/* <Menu.Item
                 onClick={() => {
                   navigate(`/services/erp-business-solutions`);
                   isMobile && toggle();
@@ -146,7 +146,7 @@ const Header = ({ opened, toggle }) => {
                 >
                   ERP & Bussiness Solutions
                 </Link>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item
                 onClick={() => {
                   navigate(`/services/digital-marketing-solutions`);

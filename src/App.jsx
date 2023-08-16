@@ -4,7 +4,7 @@ import Header from "./components/header";
 import { Box, useMantineTheme } from "@mantine/core";
 import Footer from "./components/footer";
 import Home from "./pages/home";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Services from "./pages/services";
 import ContactUs from "./pages/contactUs";
 import AboutUs from "./pages/aboutus";
@@ -15,11 +15,18 @@ import Blogs from "./pages/blogs";
 import ViewJob from "./pages/career/ViewJob";
 import ViewBlog from "./pages/blogs/ViewBlog";
 import chat from "./assets/chat.svg";
+import { useEffect } from "react";
 
 function App() {
   const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure(false);
-
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [pathname]);
   return (
     <Box>
       <Header opened={opened} toggle={toggle} />
@@ -33,10 +40,14 @@ function App() {
           borderRadius: "50%",
           width: "25px",
           textAlign: "center",
-          cursor:'pointer',
+          cursor: "pointer",
           backgroundColor: "#1864ab",
         }}
-        onClick={() => window.open("http://m.me/UsquareSolutions", "_blank")}
+        onClick={() =>
+          window.open(
+            `https://api.whatsapp.com/send?phone=+923007171197&text=Hello, I have a query`
+          )
+        }
       >
         <img src={chat} width={"20px"} />
       </Box>
