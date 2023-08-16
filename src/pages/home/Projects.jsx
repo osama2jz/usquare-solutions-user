@@ -1,4 +1,4 @@
-import { Box, Title, useMantineTheme } from "@mantine/core";
+import { Box, Loader, Title, useMantineTheme } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { useStyles } from "./styles";
 import ServiceCard from "./ServiceCard";
@@ -10,10 +10,13 @@ const Projects = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [portfolio, setPortfolio] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    axios
-      .get(backendUrl + "/portfolio/get_recent_six")
-      .then((res) => setPortfolio(res.data.data));
+    setLoading(true);
+    axios.get(backendUrl + "/portfolio/get_recent_six").then((res) => {
+      setPortfolio(res.data.data);
+      setLoading(false);
+    });
   }, []);
   return (
     <Box className={classes.services}>
@@ -31,24 +34,30 @@ const Projects = () => {
         styles={{
           control: { backgroundColor: theme.colors.blue, color: "white" },
         }}
-        align="start"
         breakpoints={[
           { maxWidth: "md", slideSize: "50%" },
           { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
         ]}
       >
-        {portfolio?.map((obj, ind) => {
-          return (
-            <Carousel.Slide key={ind}>
-              <ServiceCard
-                title={obj?.title}
-                description={obj?.description}
-                picture={obj?.picture}
-                link={obj?.project_link}
-              />
-            </Carousel.Slide>
-          );
-        })}
+        {loading ? (
+          <Loader my="50px" />
+        ) : (
+          portfolio?.map((obj, ind) => {
+            return (
+              <Carousel.Slide
+                key={ind}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <ServiceCard
+                  title={obj?.title}
+                  description={obj?.description}
+                  picture={obj?.picture}
+                  link={obj?.project_link}
+                />
+              </Carousel.Slide>
+            );
+          })
+        )}
       </Carousel>
     </Box>
   );

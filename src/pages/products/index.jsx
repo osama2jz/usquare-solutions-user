@@ -1,23 +1,21 @@
-import { Box, Flex, Title, useMantineTheme } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
-import aboutUs from "../../assets/aboutUs.png";
-import osam from "../../assets/osama.jpg";
-import { useStyles } from "./styles";
-import { useEffect, useState } from "react";
-import ProjectCard from "../../components/ProjectCard";
+import { Box, Flex, Loader, Title } from "@mantine/core";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import aboutUs from "../../assets/aboutUs.png";
+import ProjectCard from "../../components/ProjectCard";
 import { backendUrl } from "../../constants";
+import { useStyles } from "./styles";
 
 const Products = () => {
-  const theme = useMantineTheme();
-  const isMobile = useMediaQuery("(min-width: 1290px)");
-  const isMobile2 = useMediaQuery("(max-width: 900px)");
   const { classes } = useStyles();
   const [portflio, setPortflio] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    axios
-      .get(backendUrl + "/product/get_all")
-      .then((res) => setPortflio(res.data.data));
+    setLoading(true);
+    axios.get(backendUrl + "/product/get_all").then((res) => {
+      setPortflio(res.data.data);
+      setLoading(false);
+    });
   }, []);
   return (
     <Box>
@@ -38,9 +36,13 @@ const Products = () => {
         rowGap={"30px"}
         className={classes.content}
       >
-        {portflio.map((obj, ind) => {
-          return <ProjectCard obj={obj} ind={ind} key={ind} />;
-        })}
+        {loading ? (
+          <Loader m="auto" />
+        ) : (
+          portflio.map((obj, ind) => {
+            return <ProjectCard obj={obj} ind={ind} key={ind} />;
+          })
+        )}
       </Flex>
     </Box>
   );

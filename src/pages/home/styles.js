@@ -11,7 +11,7 @@ export const useStyles = createStyles((theme) => ({
     },
   },
   services: {
-    padding: "100px 200px",
+    padding: "100px 150px",
     [`@media (max-width: 800px)`]: {
       padding: "20px",
     },
@@ -29,7 +29,6 @@ export const useStyles = createStyles((theme) => ({
     padding: "20px",
     borderRadius: "10px",
     gap: "10px",
-    marginLeft: "10px",
     cursor: "pointer",
   },
   testimonialCard: {

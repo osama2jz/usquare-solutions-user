@@ -8,16 +8,17 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import contactus from "../../assets/contactUs.png";
-import { useStyles } from "./styles";
 import { useMediaQuery } from "@mantine/hooks";
-import ContactForm from "../../components/ContactForm";
+import contactus from "../../assets/contactUs.png";
 import contactus2 from "../../assets/contactus2.png";
+import ContactForm from "../../components/ContactForm";
+import { useStyles } from "./styles";
 
 const ContactUs = () => {
   const theme = useMantineTheme();
   const isMobile = useMediaQuery("(min-width: 800px)");
   const { classes } = useStyles();
+
   return (
     <Box>
       <Box

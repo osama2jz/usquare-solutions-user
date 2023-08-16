@@ -1,6 +1,5 @@
 import { createStyles } from "@mantine/core";
 import footer from "../../assets/footer.png";
-import { BorderBottom, BorderRadius } from "tabler-icons-react";
 export const useStyles = createStyles((theme) => ({
   footer: {
     backgroundImage: `url(${footer})`,
@@ -30,5 +29,11 @@ export const useStyles = createStyles((theme) => ({
     padding: "6px",
     borderEndStartRadius: "50%",
     borderStartStartRadius: "50%",
+  },
+  icon: {
+    cursor: "pointer",
+    ":hover": {
+      color: "white",
+    },
   },
 }));

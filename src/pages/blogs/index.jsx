@@ -20,10 +20,10 @@ const Blogs = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(backendUrl + "/blog/get_all")
-      .then((res) => setBlogs(res.data.data));
-    setLoading(false);
+    axios.get(backendUrl + "/blog/get_all").then((res) => {
+      setBlogs(res.data.data);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -45,7 +45,7 @@ const Blogs = () => {
           Let's Start Reading
         </Title>
         {loading ? (
-          <Loader size={"md"} m="auto"/>
+          <Loader m="auto" />
         ) : (
           <SimpleGrid
             spacing={"xl"}

@@ -1,1 +1,1 @@
-export const backendUrl = "http://usquaresolutionbackend.decimalsolution.com";
+export const backendUrl = "https://usquaresolutionbackend.decimalsolution.com";

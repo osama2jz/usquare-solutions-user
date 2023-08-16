@@ -9,14 +9,14 @@ const JobCard = ({ obj }) => {
   const { classes } = useStyles();
   return (
     <Box className={classes.job}>
-      <Stack spacing={"XS"} align="flex-start">
+      <Stack spacing={"XS"} align="flex-start" style={{ flexBasis: "20%" }}>
         <Text fw={"bold"} fz="lg">
           {obj?.title}
         </Text>
-        <Text>Experience: {obj?.experience}</Text>
+        <Text>Experience: {obj?.experience || "NA"}</Text>
       </Stack>
-      <Text>Positions: {obj?.position}</Text>
-      <Text>Job Type: {obj?.jobType}</Text>
+      <Text>Positions: {obj?.position || "NA"}</Text>
+      <Text>Job Type: {obj?.jobType || "NA"}</Text>
       <Anchor
         style={{ display: "flex", alignItems: "center" }}
         onClick={() => navigate("/view-job", { state: { job: obj } })}

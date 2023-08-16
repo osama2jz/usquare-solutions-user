@@ -17,11 +17,11 @@ const Header = ({ opened, toggle }) => {
   const theme = useMantineTheme();
   const navigate = useNavigate();
   const { classes } = useStyles({ opened });
-  const [cat, setCat] = useState([]);
+  const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(backendUrl + "/category/get_all")
-      .then((res) => setCat(res.data.data));
+      .get(backendUrl + "/about-us/get_all")
+      .then((res) => setData(res.data.data));
   }, []);
   return (
     <>
@@ -42,8 +42,14 @@ const Header = ({ opened, toggle }) => {
         </Flex>
         <Flex gap={"lg"} align={"center"}>
           <Text>Get Social with us!</Text>
-          <BrandFacebook className={classes.icon} />
-          <BrandInstagram className={classes.icon} />
+          <BrandFacebook
+            className={classes.icon}
+            onClick={() => window.open(data.facebook, "_blank")}
+          />
+          <BrandInstagram
+            className={classes.icon}
+            onClick={() => window.open(data.instagram, "_blank")}
+          />
         </Flex>
       </Box>
       <Box
@@ -74,12 +80,12 @@ const Header = ({ opened, toggle }) => {
           >
             Home
           </Link>
-          <Menu>
+          <Menu trigger="hover">
             <Menu.Target>
               <Link className={classes.link}>Services</Link>
             </Menu.Target>
             <Menu.Dropdown>
-              {cat.map((item, ind) => {
+              {/* {cat.map((item, ind) => {
                 return (
                   <Menu.Item
                     key={ind}
@@ -91,8 +97,23 @@ const Header = ({ opened, toggle }) => {
                     <Link className={classes.link}>{item.name}</Link>
                   </Menu.Item>
                 );
-              })}
-              {/* <Menu.Item>
+              })} */}
+              <Menu.Item
+                onClick={() => {
+                  navigate(`/services/ar-vr-games`);
+                  isMobile && toggle();
+                }}
+              >
+                <Link className={classes.link} to="/services/ar-vr-games">
+                  AR/VR Games
+                </Link>
+              </Menu.Item>
+              <Menu.Item
+                onClick={() => {
+                  navigate(`/services/web-app-development`);
+                  isMobile && toggle();
+                }}
+              >
                 <Link
                   className={classes.link}
                   to="/services/web-app-development"
@@ -100,7 +121,12 @@ const Header = ({ opened, toggle }) => {
                   Web App Development
                 </Link>
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item
+                onClick={() => {
+                  navigate(`/services/mobile-app-development`);
+                  isMobile && toggle();
+                }}
+              >
                 <Link
                   className={classes.link}
                   to="/services/mobile-app-development"
@@ -108,7 +134,12 @@ const Header = ({ opened, toggle }) => {
                   Mobile App Development
                 </Link>
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item
+                onClick={() => {
+                  navigate(`/services/erp-business-solutions`);
+                  isMobile && toggle();
+                }}
+              >
                 <Link
                   className={classes.link}
                   to="/services/erp-business-solutions"
@@ -116,7 +147,12 @@ const Header = ({ opened, toggle }) => {
                   ERP & Bussiness Solutions
                 </Link>
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item
+                onClick={() => {
+                  navigate(`/services/digital-marketing-solutions`);
+                  isMobile && toggle();
+                }}
+              >
                 <Link
                   className={classes.link}
                   to="/services/digital-marketing-solutions"
@@ -124,11 +160,16 @@ const Header = ({ opened, toggle }) => {
                   Digital Marketing Solutions
                 </Link>
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item
+                onClick={() => {
+                  navigate(`/services/graphic-designing`);
+                  isMobile && toggle();
+                }}
+              >
                 <Link className={classes.link} to="/services/graphic-designing">
                   Graphic Designing
                 </Link>
-              </Menu.Item> */}
+              </Menu.Item>
             </Menu.Dropdown>
           </Menu>
           <Link

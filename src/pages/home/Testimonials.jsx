@@ -1,19 +1,26 @@
-import { Box, Flex, Stack, Text, Title, useMantineTheme } from "@mantine/core";
-import React from "react";
-import img from "../../assets/home2.png";
-import { useStyles } from "./styles";
-import about1 from "../../assets/about1.svg";
-import about2 from "../../assets/about2.svg";
-import about3 from "../../assets/about3.svg";
-import { useMediaQuery } from "@mantine/hooks";
 import { Carousel } from "@mantine/carousel";
+import { Box, Flex, Loader, Title, useMantineTheme } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+import React, { useEffect, useState } from "react";
+import img from "../../assets/home2.png";
 import TetstimonialCard from "./TestimonialCard";
+import { useStyles } from "./styles";
+import { backendUrl } from "../../constants";
+import axios from "axios";
 
 const Tetstimonials = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const isMobile = useMediaQuery("(min-width: 800px)");
-
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setLoading(true);
+    axios.get(backendUrl + "/testimonial/get_all").then((res) => {
+      setData(res.data.data);
+      setLoading(false);
+    });
+  }, []);
   return (
     <Box className={classes.test}>
       <Title align="center" color={theme.colors.blue} fw={400}>
@@ -29,7 +36,7 @@ const Tetstimonials = () => {
         <Box w={!isMobile ? "100%" : "60%"}>
           <Carousel
             slideSize="50%"
-            slideGap="md"
+            // slideGap="md"
             mt="xl"
             loop
             styles={{
@@ -41,15 +48,32 @@ const Tetstimonials = () => {
               { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
             ]}
           >
-            <Carousel.Slide>
-              <TetstimonialCard />
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <TetstimonialCard />
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <TetstimonialCard />
-            </Carousel.Slide>
+            {loading ? (
+              <Loader m="auto" my="100px"/>
+            ) : (
+              data.map((obj, ind) => (
+                <Carousel.Slide
+                  key={ind}
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <TetstimonialCard data={obj} />
+                </Carousel.Slide>
+              ))
+            )}
+            {data.length < 1 && !loading && (
+              <>
+                <Carousel.Slide
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <TetstimonialCard />
+                </Carousel.Slide>
+                <Carousel.Slide
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <TetstimonialCard />
+                </Carousel.Slide>
+              </>
+            )}
           </Carousel>
         </Box>
       </Flex>

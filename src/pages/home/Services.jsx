@@ -1,4 +1,4 @@
-import { Box, Title, useMantineTheme } from "@mantine/core";
+import { Box, Loader, Title, useMantineTheme } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { useStyles } from "./styles";
 import ServiceCard from "./ServiceCard";
@@ -10,10 +10,13 @@ const Services = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [cat, setCat] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    axios
-      .get(backendUrl + "/category/get_all")
-      .then((res) => setCat(res.data.data));
+    setLoading(true);
+    axios.get(backendUrl + "/category/get_all").then((res) => {
+      setCat(res.data.data);
+      setLoading(false);
+    });
   }, []);
   return (
     <Box className={classes.services}>
@@ -31,19 +34,26 @@ const Services = () => {
         styles={{
           control: { backgroundColor: theme.colors.blue, color: "white" },
         }}
-        align="start"
+        // align="start"
         breakpoints={[
           { maxWidth: "md", slideSize: "50%" },
           { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
         ]}
       >
-        {cat.map((obj, ind) => {
-          return (
-            <Carousel.Slide key={ind}>
-              <ServiceCard title={obj?.name} description={obj?.description} />
-            </Carousel.Slide>
-          );
-        })}
+        {loading ? (
+          <Loader my="50px"/>
+        ) : (
+          cat.map((obj, ind) => {
+            return (
+              <Carousel.Slide
+                key={ind}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <ServiceCard title={obj?.name} description={obj?.description} />
+              </Carousel.Slide>
+            );
+          })
+        )}
       </Carousel>
     </Box>
   );

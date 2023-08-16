@@ -8,7 +8,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrandFacebook,
   BrandInstagram,
@@ -19,9 +19,17 @@ import {
   Search,
 } from "tabler-icons-react";
 import { useStyles } from "./styles";
+import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const Footer = () => {
   const { classes } = useStyles();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(backendUrl + "/about-us/get_all")
+      .then((res) => setData(res.data.data));
+  }, []);
   return (
     <Box className={classes.footer}>
       <SimpleGrid
@@ -42,8 +50,14 @@ const Footer = () => {
             expertise in all aspects of Internet Services
           </Text>
           <Group>
-            <BrandFacebook />
-            <BrandInstagram />
+            <BrandFacebook
+            className={classes.icon}
+              onClick={() => window.open(data.facebook, "_blank")}
+            />
+            <BrandInstagram
+            className={classes.icon}
+            onClick={() => window.open(data.instagram, "_blank")}
+            />
           </Group>
         </Stack>
         <Stack>
@@ -95,7 +109,7 @@ const Footer = () => {
       </SimpleGrid>
       <Divider color="rgb(255, 255, 255,0.1)" w={"100%"} />
       <Text align="center">
-        Copyright © DECIMAL SOLUTION All Rights Reserved{" "}
+        Copyright © USQUARE SOLUTIONS All Rights Reserved{" "}
         {new Date().getFullYear()}
       </Text>
     </Box>
