@@ -7,6 +7,7 @@ import { useStyles } from "./styles";
 import {
   BrandFacebook,
   BrandInstagram,
+  BrandLinkedin,
   DeviceMobile,
 } from "tabler-icons-react";
 import axios from "axios";
@@ -49,6 +50,10 @@ const Header = ({ opened, toggle }) => {
           <BrandInstagram
             className={classes.icon}
             onClick={() => window.open(data.instagram, "_blank")}
+          />
+          <BrandLinkedin
+            className={classes.icon}
+            onClick={() => window.open(data.linkedIn, "_blank")}
           />
         </Flex>
       </Box>

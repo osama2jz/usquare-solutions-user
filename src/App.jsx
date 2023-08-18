@@ -14,8 +14,8 @@ import Products from "./pages/products";
 import Blogs from "./pages/blogs";
 import ViewJob from "./pages/career/ViewJob";
 import ViewBlog from "./pages/blogs/ViewBlog";
-import chat from "./assets/chat.svg";
 import { useEffect } from "react";
+import { BrandWhatsapp } from "tabler-icons-react";
 
 function App() {
   const theme = useMantineTheme();
@@ -49,7 +49,7 @@ function App() {
           )
         }
       >
-        <img src={chat} width={"20px"} />
+        <BrandWhatsapp color="white" />
       </Box>
       <Routes>
         <Route path="/" element={<Home />} />

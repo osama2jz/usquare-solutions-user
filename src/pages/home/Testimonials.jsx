@@ -44,8 +44,8 @@ const Tetstimonials = () => {
             }}
             align="start"
             breakpoints={[
-              { maxWidth: "md", slideSize: "50%" },
-              { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
+              { maxWidth: "lg", slideSize: "50%" },
+              { maxWidth: "md", slideSize: "100%", slideGap: 0 },
             ]}
           >
             {loading ? (
